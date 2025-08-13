@@ -1,0 +1,43 @@
+{
+  "keep": [
+    "model_17_best0",
+    "model_29_best0",
+    "model_10_best0",
+    "model_20_best0",
+    "model_11_best0",
+    "model_5_best0",
+    "model_6_best0",
+    "model_4_best0",
+    "model_12_best0",
+    "model_13_best0",
+    "model_16_best0",
+    "model_21_best0",
+    "model_0_best0",
+    "model_23_best0"
+  ],
+  "drop": [
+    "model_32_best0",
+    "model_33_best0",
+    "model_30_best0",
+    "model_8_best2",
+    "model_6_best2",
+    "model_5_best2",
+    "model_9_best2",
+    "model_4_best2",
+    "model_14_best0",
+    "model_18_best0",
+    "model_9_best0",
+    "model_3_best0",
+    "model_2_best0",
+    "model_1_best0",
+    "model_7_best0",
+    "model_24_best0",
+    "model_26_best0",
+    "model_28_best0",
+    "model_27_best0",
+    "model_25_best0",
+    "model_31_best0",
+    "model_22_best0"
+  ],
+  "corr_threshold": 0.95
+}

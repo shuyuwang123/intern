@@ -1,0 +1,168 @@
+[0] factor=model_17_best0  direction=1  changed=True  len_raw=105  len_simpl=168  delta_len=63  ops_raw=5  ops_simpl=0  delta_ops=-5
+—— RAW ——
+div(sub(AskGrad_L1_L2, BidStackRange), div(div(AskGrad_L1_L2, mul(AskVol_L1, BidGrad_L1_L2)), AskVol_L2))
+—— SIMPLIFIED ——
+(AskGrad_L1_L2 - BidStackRange)*(AskVol_L2 + 1.0e-9)*(AskVol_L1*BidGrad_L1_L2 + 1.0e-9)/(AskGrad_L1_L2 + 1.0e-9*(AskVol_L2 + 1.0e-9)*(AskVol_L1*BidGrad_L1_L2 + 1.0e-9))
+—— DIFF ——
+--- raw
++++ simplified
+@@ -1 +1 @@
+-div(sub(AskGrad_L1_L2, BidStackRange), div(div(AskGrad_L1_L2, mul(AskVol_L1, BidGrad_L1_L2)), AskVol_L2))
++(AskGrad_L1_L2 - BidStackRange)*(AskVol_L2 + 1.0e-9)*(AskVol_L1*BidGrad_L1_L2 + 1.0e-9)/(AskGrad_L1_L2 + 1.0e-9*(AskVol_L2 + 1.0e-9)*(AskVol_L1*BidGrad_L1_L2 + 1.0e-9))
+------------------------------------------------------------------------------------------------------------------------
+[1] factor=model_29_best0  direction=1  changed=True  len_raw=131  len_simpl=157  delta_len=26  ops_raw=8  ops_simpl=4  delta_ops=-4
+—— RAW ——
+div(AskStackRange, mul(mul(add(RI_Vol, sqrt(add(RI_Vol, sqrt(BidStackRange)))), BidStackRange), div(BidGrad_L1_L2, AskGrad_L1_L2)))
+—— SIMPLIFIED ——
+AskStackRange*(AskGrad_L1_L2 + 1.0e-9)/(1.0e-9*AskGrad_L1_L2 + BidGrad_L1_L2*BidStackRange*(RI_Vol + sqrt(Abs(RI_Vol + sqrt(Abs(BidStackRange))))) + 1.0e-18)
+—— DIFF ——
+--- raw
++++ simplified
+@@ -1 +1 @@
+-div(AskStackRange, mul(mul(add(RI_Vol, sqrt(add(RI_Vol, sqrt(BidStackRange)))), BidStackRange), div(BidGrad_L1_L2, AskGrad_L1_L2)))
++AskStackRange*(AskGrad_L1_L2 + 1.0e-9)/(1.0e-9*AskGrad_L1_L2 + BidGrad_L1_L2*BidStackRange*(RI_Vol + sqrt(Abs(RI_Vol + sqrt(Abs(BidStackRange))))) + 1.0e-18)
+------------------------------------------------------------------------------------------------------------------------
+[2] factor=model_10_best0  direction=1  changed=True  len_raw=108  len_simpl=113  delta_len=5  ops_raw=5  ops_simpl=0  delta_ops=-5
+—— RAW ——
+mul(div(AskGrad_L1_L2, MeanAskVol), div(mul(div(AskStackRange, BidStackRange), AskPrice_L2), BidGrad_L1_L2))
+—— SIMPLIFIED ——
+AskGrad_L1_L2*AskPrice_L2*AskStackRange/((BidGrad_L1_L2 + 1.0e-9)*(BidStackRange + 1.0e-9)*(MeanAskVol + 1.0e-9))
+—— DIFF ——
+--- raw
++++ simplified
+@@ -1 +1 @@
+-mul(div(AskGrad_L1_L2, MeanAskVol), div(mul(div(AskStackRange, BidStackRange), AskPrice_L2), BidGrad_L1_L2))
++AskGrad_L1_L2*AskPrice_L2*AskStackRange/((BidGrad_L1_L2 + 1.0e-9)*(BidStackRange + 1.0e-9)*(MeanAskVol + 1.0e-9))
+------------------------------------------------------------------------------------------------------------------------
+[3] factor=model_20_best0  direction=1  changed=True  len_raw=133  len_simpl=134  delta_len=1  ops_raw=8  ops_simpl=3  delta_ops=-5
+—— RAW ——
+sub(cos(RI_Vol), add(BidGrad_L1_L2, sub(sqrt(BidStackRange), sub(AskGrad_L1_L2, sub(BidGrad_L1_L2, div(AskGrad_L1_L2, AskVol_L2))))))
+—— SIMPLIFIED ——
+(AskGrad_L1_L2 + (AskVol_L2 + 1.0e-9)*(AskGrad_L1_L2 - 2*BidGrad_L1_L2 + cos(RI_Vol) - sqrt(Abs(BidStackRange))))/(AskVol_L2 + 1.0e-9)
+—— DIFF ——
+--- raw
++++ simplified
+@@ -1 +1 @@
+-sub(cos(RI_Vol), add(BidGrad_L1_L2, sub(sqrt(BidStackRange), sub(AskGrad_L1_L2, sub(BidGrad_L1_L2, div(AskGrad_L1_L2, AskVol_L2))))))
++(AskGrad_L1_L2 + (AskVol_L2 + 1.0e-9)*(AskGrad_L1_L2 - 2*BidGrad_L1_L2 + cos(RI_Vol) - sqrt(Abs(BidStackRange))))/(AskVol_L2 + 1.0e-9)
+------------------------------------------------------------------------------------------------------------------------
+[4] factor=model_11_best0  direction=1  changed=True  len_raw=115  len_simpl=130  delta_len=15  ops_raw=5  ops_simpl=0  delta_ops=-5
+—— RAW ——
+add(sub(mul(mul(AskGrad_L1_L2, div(AskStackRange, BidStackRange)), MeanBidVol), BidGrad_L1_L2), Mean_ddAskPrice_L4)
+—— SIMPLIFIED ——
+(AskGrad_L1_L2*AskStackRange*MeanBidVol + (-BidGrad_L1_L2 + Mean_ddAskPrice_L4)*(BidStackRange + 1.0e-9))/(BidStackRange + 1.0e-9)
+—— DIFF ——
+--- raw
++++ simplified
+@@ -1 +1 @@
+-add(sub(mul(mul(AskGrad_L1_L2, div(AskStackRange, BidStackRange)), MeanBidVol), BidGrad_L1_L2), Mean_ddAskPrice_L4)
++(AskGrad_L1_L2*AskStackRange*MeanBidVol + (-BidGrad_L1_L2 + Mean_ddAskPrice_L4)*(BidStackRange + 1.0e-9))/(BidStackRange + 1.0e-9)
+------------------------------------------------------------------------------------------------------------------------
+[5] factor=model_5_best0  direction=1  changed=True  len_raw=116  len_simpl=136  delta_len=20  ops_raw=6  ops_simpl=1  delta_ops=-5
+—— RAW ——
+div(AskStackRange, mul(mul(add(RI_Vol, cos(Mean_ddBidPrice_L5)), div(BidGrad_L1_L2, AskGrad_L1_L2)), BidStackRange))
+—— SIMPLIFIED ——
+AskStackRange*(AskGrad_L1_L2 + 1.0e-9)/(1.0e-9*AskGrad_L1_L2 + BidGrad_L1_L2*BidStackRange*(RI_Vol + cos(Mean_ddBidPrice_L5)) + 1.0e-18)
+—— DIFF ——
+--- raw
++++ simplified
+@@ -1 +1 @@
+-div(AskStackRange, mul(mul(add(RI_Vol, cos(Mean_ddBidPrice_L5)), div(BidGrad_L1_L2, AskGrad_L1_L2)), BidStackRange))
++AskStackRange*(AskGrad_L1_L2 + 1.0e-9)/(1.0e-9*AskGrad_L1_L2 + BidGrad_L1_L2*BidStackRange*(RI_Vol + cos(Mean_ddBidPrice_L5)) + 1.0e-18)
+------------------------------------------------------------------------------------------------------------------------
+[6] factor=model_6_best0  direction=-1  changed=True  len_raw=116  len_simpl=136  delta_len=20  ops_raw=6  ops_simpl=1  delta_ops=-5
+—— RAW ——
+div(AskStackRange, mul(mul(add(RI_Vol, cos(Mean_ddBidPrice_L5)), div(BidGrad_L1_L2, AskGrad_L1_L2)), BidStackRange))
+—— SIMPLIFIED ——
+AskStackRange*(AskGrad_L1_L2 + 1.0e-9)/(1.0e-9*AskGrad_L1_L2 + BidGrad_L1_L2*BidStackRange*(RI_Vol + cos(Mean_ddBidPrice_L5)) + 1.0e-18)
+—— DIFF ——
+--- raw
++++ simplified
+@@ -1 +1 @@
+-div(AskStackRange, mul(mul(add(RI_Vol, cos(Mean_ddBidPrice_L5)), div(BidGrad_L1_L2, AskGrad_L1_L2)), BidStackRange))
++AskStackRange*(AskGrad_L1_L2 + 1.0e-9)/(1.0e-9*AskGrad_L1_L2 + BidGrad_L1_L2*BidStackRange*(RI_Vol + cos(Mean_ddBidPrice_L5)) + 1.0e-18)
+------------------------------------------------------------------------------------------------------------------------
+[7] factor=model_4_best0  direction=1  changed=True  len_raw=116  len_simpl=136  delta_len=20  ops_raw=6  ops_simpl=1  delta_ops=-5
+—— RAW ——
+div(AskStackRange, mul(mul(add(RI_Vol, cos(Mean_ddBidPrice_L5)), div(BidGrad_L1_L2, AskGrad_L1_L2)), BidStackRange))
+—— SIMPLIFIED ——
+AskStackRange*(AskGrad_L1_L2 + 1.0e-9)/(1.0e-9*AskGrad_L1_L2 + BidGrad_L1_L2*BidStackRange*(RI_Vol + cos(Mean_ddBidPrice_L5)) + 1.0e-18)
+—— DIFF ——
+--- raw
++++ simplified
+@@ -1 +1 @@
+-div(AskStackRange, mul(mul(add(RI_Vol, cos(Mean_ddBidPrice_L5)), div(BidGrad_L1_L2, AskGrad_L1_L2)), BidStackRange))
++AskStackRange*(AskGrad_L1_L2 + 1.0e-9)/(1.0e-9*AskGrad_L1_L2 + BidGrad_L1_L2*BidStackRange*(RI_Vol + cos(Mean_ddBidPrice_L5)) + 1.0e-18)
+------------------------------------------------------------------------------------------------------------------------
+[8] factor=model_12_best0  direction=1  changed=True  len_raw=110  len_simpl=141  delta_len=31  ops_raw=5  ops_simpl=0  delta_ops=-5
+—— RAW ——
+div(div(mul(AskGrad_L1_L2, MeanBidVol), BidGrad_L1_L2), div(add(BidStackRange, BidGrad_L1_L2), AskGrad_L1_L2))
+—— SIMPLIFIED ——
+AskGrad_L1_L2*MeanBidVol*(AskGrad_L1_L2 + 1.0e-9)/((BidGrad_L1_L2 + 1.0e-9)*(1.0e-9*AskGrad_L1_L2 + BidGrad_L1_L2 + BidStackRange + 1.0e-18))
+—— DIFF ——
+--- raw
++++ simplified
+@@ -1 +1 @@
+-div(div(mul(AskGrad_L1_L2, MeanBidVol), BidGrad_L1_L2), div(add(BidStackRange, BidGrad_L1_L2), AskGrad_L1_L2))
++AskGrad_L1_L2*MeanBidVol*(AskGrad_L1_L2 + 1.0e-9)/((BidGrad_L1_L2 + 1.0e-9)*(1.0e-9*AskGrad_L1_L2 + BidGrad_L1_L2 + BidStackRange + 1.0e-18))
+------------------------------------------------------------------------------------------------------------------------
+[9] factor=model_13_best0  direction=-1  changed=True  len_raw=145  len_simpl=107  delta_len=-38  ops_raw=8  ops_simpl=3  delta_ops=-5
+—— RAW ——
+sub(sub(sqrt(mul(mul(BidGrad_L1_L2, AskVol_L2), mul(BidGrad_L1_L2, BidStackRange))), sin(add(AskGrad_L1_L2, Mean_ddAskPrice_L4))), AskGrad_L1_L2)
+—— SIMPLIFIED ——
+-AskGrad_L1_L2 - sin(AskGrad_L1_L2 + Mean_ddAskPrice_L4) + Abs(BidGrad_L1_L2*sqrt(AskVol_L2*BidStackRange))
+—— DIFF ——
+--- raw
++++ simplified
+@@ -1 +1 @@
+-sub(sub(sqrt(mul(mul(BidGrad_L1_L2, AskVol_L2), mul(BidGrad_L1_L2, BidStackRange))), sin(add(AskGrad_L1_L2, Mean_ddAskPrice_L4))), AskGrad_L1_L2)
++-AskGrad_L1_L2 - sin(AskGrad_L1_L2 + Mean_ddAskPrice_L4) + Abs(BidGrad_L1_L2*sqrt(AskVol_L2*BidStackRange))
+------------------------------------------------------------------------------------------------------------------------
+[10] factor=model_16_best0  direction=1  changed=True  len_raw=143  len_simpl=162  delta_len=19  ops_raw=9  ops_simpl=4  delta_ops=-5
+—— RAW ——
+sub(AskGrad_L1_L2, sub(BidGrad_L1_L2, sqrt(div(sin(AskGrad_L1_L2), mul(MeanAskVol, mul(div(BidStackRange, AskGrad_L1_L2), sin(MeanBidVol)))))))
+—— SIMPLIFIED ——
+AskGrad_L1_L2 - BidGrad_L1_L2 + sqrt(Abs((AskGrad_L1_L2 + 1.0e-9)*sin(AskGrad_L1_L2)/(1.0e-9*AskGrad_L1_L2 + BidStackRange*MeanAskVol*sin(MeanBidVol) + 1.0e-18)))
+—— DIFF ——
+--- raw
++++ simplified
+@@ -1 +1 @@
+-sub(AskGrad_L1_L2, sub(BidGrad_L1_L2, sqrt(div(sin(AskGrad_L1_L2), mul(MeanAskVol, mul(div(BidStackRange, AskGrad_L1_L2), sin(MeanBidVol)))))))
++AskGrad_L1_L2 - BidGrad_L1_L2 + sqrt(Abs((AskGrad_L1_L2 + 1.0e-9)*sin(AskGrad_L1_L2)/(1.0e-9*AskGrad_L1_L2 + BidStackRange*MeanAskVol*sin(MeanBidVol) + 1.0e-18)))
+------------------------------------------------------------------------------------------------------------------------
+[11] factor=model_21_best0  direction=-1  changed=True  len_raw=71  len_simpl=67  delta_len=-4  ops_raw=5  ops_simpl=3  delta_ops=-2
+—— RAW ——
+sub(sqrt(sqrt(mul(BidGrad_L1_L2, BidStackRange))), sqrt(AskGrad_L1_L2))
+—— SIMPLIFIED ——
+-sqrt(Abs(AskGrad_L1_L2)) + Abs(BidGrad_L1_L2*BidStackRange)**(1/4)
+—— DIFF ——
+--- raw
++++ simplified
+@@ -1 +1 @@
+-sub(sqrt(sqrt(mul(BidGrad_L1_L2, BidStackRange))), sqrt(AskGrad_L1_L2))
++-sqrt(Abs(AskGrad_L1_L2)) + Abs(BidGrad_L1_L2*BidStackRange)**(1/4)
+------------------------------------------------------------------------------------------------------------------------
+[12] factor=model_0_best0  direction=-1  changed=True  len_raw=78  len_simpl=142  delta_len=64  ops_raw=4  ops_simpl=2  delta_ops=-2
+—— RAW ——
+sqrt(add(div(BidGrad_L2_L3, MeanAskPrice), div(BidGrad_L1_L2, AskGrad_L1_L2)))
+—— SIMPLIFIED ——
+sqrt(Abs((BidGrad_L1_L2*(MeanAskPrice + 1.0e-9) + BidGrad_L2_L3*(AskGrad_L1_L2 + 1.0e-9))/((AskGrad_L1_L2 + 1.0e-9)*(MeanAskPrice + 1.0e-9))))
+—— DIFF ——
+--- raw
++++ simplified
+@@ -1 +1 @@
+-sqrt(add(div(BidGrad_L2_L3, MeanAskPrice), div(BidGrad_L1_L2, AskGrad_L1_L2)))
++sqrt(Abs((BidGrad_L1_L2*(MeanAskPrice + 1.0e-9) + BidGrad_L2_L3*(AskGrad_L1_L2 + 1.0e-9))/((AskGrad_L1_L2 + 1.0e-9)*(MeanAskPrice + 1.0e-9))))
+------------------------------------------------------------------------------------------------------------------------
+[13] factor=model_23_best0  direction=-1  changed=True  len_raw=33  len_simpl=27  delta_len=-6  ops_raw=1  ops_simpl=0  delta_ops=-1
+—— RAW ——
+mul(BidStackRange, BidGrad_L1_L2)
+—— SIMPLIFIED ——
+BidGrad_L1_L2*BidStackRange
+—— DIFF ——
+--- raw
++++ simplified
+@@ -1 +1 @@
+-mul(BidStackRange, BidGrad_L1_L2)
++BidGrad_L1_L2*BidStackRange
+------------------------------------------------------------------------------------------------------------------------
